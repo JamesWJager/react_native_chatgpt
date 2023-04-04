@@ -1,6 +1,8 @@
 import {useEffect} from 'react';
 import {AppState} from 'react-native';
 
+import {RecoilRoot} from 'recoil';
+
 import {RootNavigator} from './src/navigation/RootNavigator';
 import {onAppStateChange} from './src/utils/onAppStateChange';
 
@@ -13,7 +15,11 @@ function App(): JSX.Element {
 		return () => subscription.remove();
 	}, []);
 
-	return <RootNavigator />;
+	return (
+		<RecoilRoot>
+			<RootNavigator />
+		</RecoilRoot>
+	);
 }
 
 export default App;

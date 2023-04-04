@@ -113,7 +113,13 @@
 				}
 			}
 		],
-		"react-hooks/exhaustive-deps": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": [
+			"warn",
+			{
+				"additionalHooks": "(useRecoilCallback|useRecoilTransaction_UNSTABLE)"
+			}
+		],
 		// Enforce the use of the shorthand syntax.
 		"object-shorthand": "error"
 	}
