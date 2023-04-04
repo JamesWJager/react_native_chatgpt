@@ -1,7 +1,13 @@
 module.exports = {
-  content: ['./App.{js,jsx,ts,tsx}', './screens/**/*.{js,jsx,ts,tsx}'],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+	content: [
+		'./App.tsx',
+		'App.tsx',
+		'app.tsx',
+		'./src/**/*.{js,jsx,ts,tsx}',
+		'./src/**/**/*.{js,jsx,ts,tsx}',
+	],
+	theme: {
+		extend: {},
+	},
+	plugins: [],
 };
