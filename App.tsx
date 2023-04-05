@@ -3,6 +3,7 @@ import {AppState} from 'react-native';
 
 import {RecoilRoot} from 'recoil';
 
+import {ErrorBoundary} from './src/components/error/ErrorBoundary';
 import {RootNavigator} from './src/navigation/RootNavigator';
 import {onAppStateChange} from './src/utils/onAppStateChange';
 
@@ -16,9 +17,11 @@ function App(): JSX.Element {
 	}, []);
 
 	return (
-		<RecoilRoot>
-			<RootNavigator />
-		</RecoilRoot>
+		<ErrorBoundary>
+			<RecoilRoot>
+				<RootNavigator />
+			</RecoilRoot>
+		</ErrorBoundary>
 	);
 }
 
