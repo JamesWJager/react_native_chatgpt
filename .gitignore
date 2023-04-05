@@ -63,4 +63,6 @@ yarn-error.log
 .metro-health-check*
 
 enviroment.js
-*.env
+.env.development
+sampleData.json
+sampleConvoData.json

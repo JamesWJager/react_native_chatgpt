@@ -1,9 +1,7 @@
-import {ViewProps} from 'react-native/types';
+import {View, ViewProps} from 'react-native';
 
 import {clsx} from 'clsx';
 import {styled} from 'nativewind';
-
-import View from './View';
 
 interface RowInterface extends ViewProps {
 	center?: boolean;
@@ -15,7 +13,7 @@ const Row: React.FC<RowInterface> = ({children, ...props}) => {
 	const stylesCenter = center ? 'justify-center items-center' : '';
 	const stylesWidth = full ? 'w-full' : '';
 
-	const className = clsx('flex', stylesCenter, stylesWidth);
+	const className = clsx('flex flex-row', stylesCenter, stylesWidth);
 	return (
 		<View {...props} className={className}>
 			{children}
