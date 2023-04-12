@@ -1,10 +1,10 @@
-import {forwardRef} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import { forwardRef } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
 
-import {ErrorBoundary} from '../components/error/ErrorBoundary';
-import SafeAreaView from '../components/ui/SafeAreaView';
+import { ErrorBoundary } from '../components/error/ErrorBoundary'
+import SafeAreaView from '../components/ui/SafeAreaView'
 
-import {RootStack} from './stacks/RootStack';
+import { RootStack } from './stacks/RootStack'
 
 export const RootNavigator = forwardRef<
 	Partial<React.ComponentProps<typeof NavigationContainer>>
@@ -18,7 +18,7 @@ export const RootNavigator = forwardRef<
 				</SafeAreaView>
 			</NavigationContainer>
 		</ErrorBoundary>
-	);
-});
+	)
+})
 
-RootNavigator.displayName = 'RootNavigator';
+RootNavigator.displayName = 'RootNavigator'

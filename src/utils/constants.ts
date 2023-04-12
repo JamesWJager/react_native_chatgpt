@@ -1,1 +1,1 @@
-export const DEFAULT_STACK_OPTIONS = {headerShown: false};
+export const DEFAULT_STACK_OPTIONS = { headerShown: false }

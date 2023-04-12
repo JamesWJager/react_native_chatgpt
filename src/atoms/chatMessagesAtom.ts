@@ -1,14 +1,14 @@
-import {atom} from 'recoil';
+import { atom } from 'recoil'
 
 export type MessageType = {
-	role: string;
-	content: string;
-};
+	role: string
+	content: string
+}
 
 export const chatMessageIdsState = atom<string[]>({
 	key: 'chatMessageIds',
 	default: [],
-});
+})
 
 export const chatMessageStateAtom = atom<MessageType[]>({
 	key: 'chatMessageState',
@@ -18,4 +18,4 @@ export const chatMessageStateAtom = atom<MessageType[]>({
 			content: 'Hello!',
 		},
 	],
-});
+})

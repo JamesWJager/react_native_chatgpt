@@ -1,13 +1,13 @@
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import {ErrorBoundary} from '../components/error/ErrorBoundary';
-import {DEFAULT_STACK_OPTIONS} from '../utils/constants';
+import { ErrorBoundary } from '../components/error/ErrorBoundary'
+import { DEFAULT_STACK_OPTIONS } from '../utils/constants'
 
-import {HomeStack} from './stacks/HomeStack';
-import {MainStackParamList} from './types/NavigationTypes';
+import { HomeStack } from './stacks/HomeStack'
+import { MainStackParamList } from './types/NavigationTypes'
 
-const MainStack = createNativeStackNavigator<MainStackParamList>();
+const MainStack = createNativeStackNavigator<MainStackParamList>()
 
 export const MainNavigator: React.FC = () => {
 	return (
@@ -20,5 +20,5 @@ export const MainNavigator: React.FC = () => {
 				/>
 			</MainStack.Navigator>
 		</ErrorBoundary>
-	);
-};
+	)
+}
