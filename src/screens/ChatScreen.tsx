@@ -6,7 +6,7 @@ import type { ChatGPTInterface } from '@@types/ChatGPTInterface'
 
 import { faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import colors from '@styles/colors'
+import colors from '@styles/colors.cjs'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
 
