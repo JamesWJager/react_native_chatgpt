@@ -1,4 +1,4 @@
-import { ViewProps } from 'react-native/types'
+import type { ViewProps } from 'react-native/types'
 
 import { clsx } from 'clsx'
 import { styled } from 'nativewind'

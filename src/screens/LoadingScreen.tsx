@@ -1,6 +1,6 @@
 import { Text } from 'react-native'
 
-import View from '../components/ui/View'
+import View from '~components/ui/View'
 
 export const LoadingScreen: React.FC = () => {
   return (

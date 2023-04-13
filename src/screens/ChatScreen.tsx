@@ -2,21 +2,20 @@ import { createRef, useEffect, useState } from 'react'
 import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native'
 import { CHATGPT_API, OPENAI_API_KEY } from 'react-native-dotenv'
 
-import type { ChatGPTInterface } from '@@types/ChatGPTInterface'
+import type { ChatGPTInterface } from '~@types/ChatGPTInterface'
 
 import { faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import colors from '@styles/colors.cjs'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
 
-import { chatMessageStateAtom } from '@atoms/chatMessagesAtom'
-import { chatQueryAtom } from '@atoms/chatQueryAtom'
-
-import { ErrorBoundary } from '@components/error/ErrorBoundary'
-import { ChatMessage } from '@components/ui/ChatMessage'
-import Column from '@components/ui/Column'
-import Row from '@components/ui/Row'
+import { chatMessageStateAtom } from '~atoms/chatMessagesAtom'
+import { chatQueryAtom } from '~atoms/chatQueryAtom'
+import { ErrorBoundary } from '~components/error/ErrorBoundary'
+import { ChatMessage } from '~components/ui/ChatMessage'
+import Column from '~components/ui/Column'
+import Row from '~components/ui/Row'
+import colors from '~styles/colors.cjs'
 
 const axiosClient = axios.create({
   headers: {
