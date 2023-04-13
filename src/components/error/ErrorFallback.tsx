@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity } from 'react-native'
 import type { FallbackComponentProps } from 'react-native-error-boundary'
 
-import View from '../ui/View'
+import { View } from '~components/ui/View'
 
 export const ErrorFallback: React.FC<FallbackComponentProps> = props => {
   const { error, resetError } = props

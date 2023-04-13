@@ -21,5 +21,6 @@
     "**/Thumbs.db": true,
     "node_modules/**": false,
     "android/app/src/main/assets/index.android.bundle": true
-  }
+  },
+  "tailwindCSS.classAttributes": ["className", "textStyles", "viewStyles"]
 }

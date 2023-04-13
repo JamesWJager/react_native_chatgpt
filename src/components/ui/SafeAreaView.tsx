@@ -1,20 +1,16 @@
 import type { NativeSafeAreaViewProps } from 'react-native-safe-area-context'
 import { SafeAreaView as SafeView } from 'react-native-safe-area-context'
 
-import { styled } from 'nativewind'
-
 interface SafeAreaViewInterface extends NativeSafeAreaViewProps {
   edges?: ('bottom' | 'left' | 'right' | 'top')[]
 }
 
-const SafeAreaView: React.FC<SafeAreaViewInterface> = ({ children, edges = ['bottom', 'top'], ...props }) => (
-  <SafeView {...props} edges={edges}>
-    {children}
-  </SafeView>
-)
+export const SafeAreaView: React.FC<SafeAreaViewInterface> = props => {
+  const { children, edges = ['bottom', 'top'], ...safeAreaViewProps } = props
 
-export default styled(SafeAreaView, {
-  props: {
-    className: true,
-  },
-})
+  return (
+    <SafeView {...safeAreaViewProps} edges={edges}>
+      {children}
+    </SafeView>
+  )
+}

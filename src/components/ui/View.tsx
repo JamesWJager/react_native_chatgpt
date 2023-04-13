@@ -1,15 +1,18 @@
 import type { ViewProps } from 'react-native'
 import { View as RNView } from 'react-native'
 
-import { styled } from 'nativewind'
+import clsx from 'clsx'
 
-const View: React.FC<ViewProps> = props => {
-  const { children, ...rest } = props
-  return <RNView {...rest}>{children}</RNView>
+interface ViewInterface extends ViewProps {
+  viewStyles?: string
 }
 
-export default styled(View, {
-  props: {
-    className: true,
-  },
-})
+export const View: React.FC<ViewInterface> = props => {
+  const { children, viewStyles, ...rest } = props
+
+  return (
+    <RNView {...rest} className={clsx(viewStyles)}>
+      {children}
+    </RNView>
+  )
+}

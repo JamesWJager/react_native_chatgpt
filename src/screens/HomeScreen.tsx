@@ -1,25 +1,22 @@
-import { Text } from 'react-native'
-
-import Column from '~components/ui/Column'
-import Row from '~components/ui/Row'
+import { Column } from '~components/ui/Column'
+import { Row } from '~components/ui/Row'
+import { Text } from '~components/ui/Text'
 
 export const HomeScreen: React.FC = () => {
   return (
-    <Row>
-      <Column className="flex-1">
-        <Row>
-          <Text>Top</Text>
-        </Row>
-        <Row>
-          <Text>Header</Text>
-        </Row>
-        <Row>
-          <Text>categories wrap</Text>
-        </Row>
-      </Column>
+    <Column>
       <Row>
-        <Text>Bottom</Text>
+        <Text text="top" />
       </Row>
-    </Row>
+      <Row>
+        <Text text="header" />
+      </Row>
+      <Row className="bg-backgroundPrimary">
+        <Text text="categories row wrap" />
+      </Row>
+      <Row className="bg-backgroundPrimary">
+        <Text text="bottom" />
+      </Row>
+    </Column>
   )
 }

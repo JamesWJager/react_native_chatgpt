@@ -1,5 +1,5 @@
 import { createRef, useEffect, useState } from 'react'
-import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableOpacity } from 'react-native'
 import { CHATGPT_API, OPENAI_API_KEY } from 'react-native-dotenv'
 
 import type { ChatGPTInterface } from '~@types/ChatGPTInterface'
@@ -13,8 +13,10 @@ import { chatMessageStateAtom } from '~atoms/chatMessagesAtom'
 import { chatQueryAtom } from '~atoms/chatQueryAtom'
 import { ErrorBoundary } from '~components/error/ErrorBoundary'
 import { ChatMessage } from '~components/ui/ChatMessage'
-import Column from '~components/ui/Column'
-import Row from '~components/ui/Row'
+import { Column } from '~components/ui/Column'
+import { Row } from '~components/ui/Row'
+import type { ScrollViewRefType } from '~components/ui/ScrollView'
+import { ScrollView } from '~components/ui/ScrollView'
 import colors from '~styles/colors.cjs'
 
 const axiosClient = axios.create({
@@ -29,10 +31,11 @@ export const ChatScreen: React.FC = () => {
   const [chatMessageState, setChatMessageState] = useRecoilState(chatMessageStateAtom)
   const submitDisabled = chatQuery.length === 0
   const [loading, setLoading] = useState(true)
-  const scrollRef = createRef<ScrollView>()
+  const scrollRef = createRef<ScrollViewRefType>()
+
   useEffect(() => {
     const lastIndex = chatMessageState?.length - 1
-    if (chatQuery.length !== 0 && chatMessageState[lastIndex]?.role === 'user') {
+    if (chatMessageState[lastIndex]?.role === 'user') {
       axiosClient
         .post<ChatGPTInterface>(CHATGPT_API, {
           model: 'gpt-3.5-turbo',
@@ -46,9 +49,12 @@ export const ChatScreen: React.FC = () => {
             )} ------ Error: ${error}`,
           )
         })
-        .finally(() => setLoading(false))
+        .finally(() => {
+          setLoading(false)
+          setChatQuery('')
+        })
     }
-  }, [chatMessageState, chatQuery.length, setChatMessageState])
+  }, [chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
 
   const handleSubmit = () => {
     Keyboard.dismiss()
@@ -63,7 +69,7 @@ export const ChatScreen: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <KeyboardAvoidingView className="flex-1 flex-col justify-center bg-[#274252]">
+      <KeyboardAvoidingView className="flex-1 flex-col justify-center bg-backgroundPrimary">
         <ScrollView
           ref={scrollRef}
           onContentSizeChange={handleScrollToEnd}
@@ -83,7 +89,7 @@ export const ChatScreen: React.FC = () => {
           )}
         </ScrollView>
         <Row className="p-4 bg-backgroundPrimary" center>
-          <Row className="rounded-full w-[75vw] p-1 items-start relative">
+          <Row className="rounded-full w-[75vw] p-1 items-start relative bg-chatInput">
             <TextInput
               className="self-center flex-1 py-0 text-black rounded-full text-[16px] px-2"
               placeholder="Ask me something!"

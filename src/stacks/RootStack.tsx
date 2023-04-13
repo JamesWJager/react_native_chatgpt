@@ -1,11 +1,11 @@
 import type React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import type { RootStackParamList } from '../@types/NavigationTypes'
+import type { RootStackParamList } from '~@types/NavigationTypes'
 
-import { ErrorBoundary } from '../components/error/ErrorBoundary'
-import { MainNavigator } from '../navigators/MainNavigator'
-import { DEFAULT_STACK_OPTIONS } from '../utils/constants'
+import { ErrorBoundary } from '~components/error/ErrorBoundary'
+import { MainNavigator } from '~navigators/MainNavigator'
+import { DEFAULT_STACK_OPTIONS } from '~utils/constants'
 
 const RouteStack = createNativeStackNavigator<RootStackParamList>()
 
