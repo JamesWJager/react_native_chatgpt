@@ -4,10 +4,8 @@ import { AppState } from 'react-native'
 import { RecoilRoot } from 'recoil'
 
 import { ErrorBoundary } from './src/components/error/ErrorBoundary'
-import { RootNavigator } from './src/navigation/RootNavigator'
+import { RootNavigator } from './src/navigators/RootNavigator'
 import { onAppStateChange } from './src/utils/onAppStateChange'
-
-import './src/@types/App.d.ts'
 
 function App(): JSX.Element {
   useEffect(() => {

@@ -1,30 +1,30 @@
-import {ViewProps} from 'react-native/types';
+import { ViewProps } from 'react-native/types'
 
-import {clsx} from 'clsx';
-import {styled} from 'nativewind';
+import { clsx } from 'clsx'
+import { styled } from 'nativewind'
 
-import View from './View';
+import View from './View'
 
 interface ColumnInterface extends ViewProps {
-	center?: boolean;
-	full?: boolean;
+  center?: boolean
+  full?: boolean
 }
 
-const Column: React.FC<ColumnInterface> = ({children, ...props}) => {
-	const {center = false, full = false} = props;
-	const stylesCenter = center ? 'justify-center items-center' : '';
-	const stylesWidth = full ? 'w-full' : '';
+const Column: React.FC<ColumnInterface> = ({ children, ...props }) => {
+  const { center = false, full = false } = props
+  const stylesCenter = center ? 'justify-center items-center' : ''
+  const stylesWidth = full ? 'w-full' : ''
 
-	const className = clsx('flex flex-col', stylesCenter, stylesWidth);
-	return (
-		<View {...props} className={className}>
-			{children}
-		</View>
-	);
-};
+  const className = clsx('flex flex-col', stylesCenter, stylesWidth)
+  return (
+    <View {...props} className={className}>
+      {children}
+    </View>
+  )
+}
 
 export default styled(Column, {
-	props: {
-		className: true,
-	},
-});
+  props: {
+    className: true,
+  },
+})

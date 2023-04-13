@@ -1,7 +1,25 @@
 {
+  "typescript.tsdk": "node_modules/typescript/lib",
   "java.compile.nullAnalysis.mode": "automatic",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.tabSize": 2,
-  "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"]
+  "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"],
+  "javascript.suggestionActions.enabled": false,
+  "search.exclude": {
+    ".bundle/**": true,
+    "node_modules/**": false,
+    "android/app/src/main/assets/index.android.bundle": true
+  },
+  "files.exclude": {
+    "**/.cache": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.husky": true,
+    "**/.idea": true,
+    "**/.bundle": true,
+    "**/Thumbs.db": true,
+    "node_modules/**": false,
+    "android/app/src/main/assets/index.android.bundle": true
+  }
 }

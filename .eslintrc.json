@@ -30,7 +30,12 @@
   "plugins": ["react", "@react-native-community", "@typescript-eslint", "simple-import-sort", "unused-imports"],
   // Resolve imports
   "settings": {
+    "import/ignore": ["node_modules/react-native/index\\.js$"],
     "import/resolver": {
+      "alias": {
+        "map": [["@", "./src/"]],
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
+      },
       "typescript": {
         "project": "./tsconfig.json"
       }
@@ -41,6 +46,7 @@
   },
   "rules": {
     "semi": "off",
+    "import/no-unresolved": ["error", { "commonjs": true }],
     "comma-dangle": [
       "warn",
       {
@@ -51,6 +57,13 @@
         "functions": "always-multiline"
       }
     ],
+    "import/no-import-module-exports": [
+      "error",
+      {
+        "exceptions": ["babel.config.js"]
+      }
+    ],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "@typescript-eslint/semi": ["warn", "never"],
     "@typescript-eslint/no-use-before-define": "off",
@@ -66,14 +79,20 @@
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "simple-import-sort/exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
     "simple-import-sort/imports": [
       "error",
       {
         "groups": [
           ["^react$", "^react", "^@react"],
+          ["@types"],
           ["^@?\\w"],
-          ["@/context", "@/hooks", "@/layout", "@/legacyComponents", "@/components"],
-          ["@/api", "@/services", "@/utils"],
+          ["@navigators", "@stacks", "@screens"],
+          ["@globals", "@providers", "@contexts"],
+          ["@atoms"],
+          ["@hooks", "@components"],
+          ["@api", "@services", "@utils"],
+          ["@assets"],
           ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
           ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
         ]
@@ -100,5 +119,24 @@
     ],
     // Enforce the use of the shorthand syntax.
     "object-shorthand": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["tailwind.config.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": 0
+      }
+    },
+    {
+      "files": ["./src/@types/app.d.ts"],
+      "rules": {
+        "@typescript-eslint/no-empty-interface": [
+          "error",
+          {
+            "allowSingleExtends": false
+          }
+        ]
+      }
+    }
+  ]
 }

@@ -2,16 +2,17 @@ import { useCallback, useRef } from 'react'
 import { useFocusEffect } from '@react-navigation/native'
 
 export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
-	const firstTimeRef = useRef(true)
+  const firstTimeRef = useRef(true)
 
-	useFocusEffect(
-		useCallback(() => {
-			if (firstTimeRef.current) {
-				firstTimeRef.current = false
-				return
-			}
+  useFocusEffect(
+    useCallback(() => {
+      if (firstTimeRef.current) {
+        firstTimeRef.current = false
+        return
+      }
 
-			void refetch()
-		}, [refetch])
-	)
+      // eslint-disable-next-line no-void
+      void refetch()
+    }, [refetch]),
+  )
 }
