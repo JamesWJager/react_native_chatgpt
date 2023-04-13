@@ -16,16 +16,16 @@ export const NavigationBar: React.FC = () => {
     navigate('HomeStack', { screen: 'Chat' })
   }
   return (
-    <Row className="justify-evenly mb-1">
+    <Row className="justify-evenly">
       <TouchableHighlight className="justify-center items-center" onPress={navigateHome} style={styles.gap}>
         <>
-          <FontAwesomeIcon icon={faHome} color="white" />
+          <FontAwesomeIcon icon={faHome} color="white" size={20} />
           <Text className="text-white">Home</Text>
         </>
       </TouchableHighlight>
       <TouchableHighlight className="justify-center items-center" onPress={navigateChat} style={styles.gap}>
         <>
-          <FontAwesomeIcon icon={faComment} color="white" />
+          <FontAwesomeIcon icon={faComment} color="white" size={20} />
           <Text className="text-white">Chat</Text>
         </>
       </TouchableHighlight>
