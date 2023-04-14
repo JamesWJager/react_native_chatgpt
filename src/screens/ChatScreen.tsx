@@ -16,8 +16,6 @@ import { ChatMessage } from '~components/ui/ChatMessage'
 import { Column } from '~components/ui/Column'
 import { NavigationBar } from '~components/ui/NavigationBar'
 import { Row } from '~components/ui/Row'
-import type { ScrollViewRefType } from '~components/ui/ScrollView'
-import { ScrollView } from '~components/ui/ScrollView'
 import { View } from '~components/ui/View'
 import colors from '~styles/colors.cjs'
 

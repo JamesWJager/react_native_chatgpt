@@ -17,7 +17,7 @@ export const Icon: React.FC<IconInterface> = props => {
   const { navigate } = useNavigation()
 
   const handleNavigation = () => {
-    navigate('HomeStack', { screen: 'Chat' })
+    navigate('HomeStack', { screen: 'ChatScreen' })
   }
   return (
     <TouchableHighlight
