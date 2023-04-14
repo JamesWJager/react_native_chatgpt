@@ -12,8 +12,9 @@ const Stack = createNativeStackNavigator<HomeStackParamList>()
 export const HomeStack: React.FC = () => {
   return (
     <ErrorBoundary>
-      <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS} initialRouteName="Home">
-        <Stack.Screen name="Home" component={ChatScreen} options={DEFAULT_STACK_OPTIONS} />
+      <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS} initialRouteName="HomeScreen">
+        <Stack.Screen name="HomeScreen" component={ChatScreen} options={DEFAULT_STACK_OPTIONS} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} options={DEFAULT_STACK_OPTIONS} />
       </Stack.Navigator>
     </ErrorBoundary>
   )

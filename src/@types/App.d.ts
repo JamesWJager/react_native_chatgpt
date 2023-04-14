@@ -4,6 +4,7 @@ import type { MainStackParamList } from './NavigationTypes'
 
 declare global {
   namespace ReactNavigation {
-    type RootParamList = MainStackParamList
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends MainStackParamList {}
   }
 }
