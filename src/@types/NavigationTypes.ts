@@ -21,7 +21,8 @@ export type MainStackScreenProps<T extends keyof MainStackParamList> = Composite
 >
 
 export type HomeStackParamList = {
-  Home: undefined
+  HomeScreen: undefined
+  ChatScreen: undefined
 }
 
 export type HomeStackScreenProps<T extends keyof HomeStackParamList> = CompositeScreenProps<

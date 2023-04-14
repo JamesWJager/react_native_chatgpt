@@ -1,5 +1,5 @@
-import { createRef, useEffect, useState } from 'react'
-import { Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableOpacity } from 'react-native'
+import { useEffect, useRef, useState } from 'react'
+import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native'
 import { CHATGPT_API, OPENAI_API_KEY } from 'react-native-dotenv'
 
 import type { ChatGPTInterface } from '~@types/ChatGPTInterface'
@@ -33,7 +33,7 @@ export const ChatScreen: React.FC = () => {
   const [chatMessageState, setChatMessageState] = useRecoilState(chatMessageStateAtom)
   const submitDisabled = chatQuery.length === 0
   const [loading, setLoading] = useState(true)
-  const scrollRef = createRef<ScrollViewRefType>()
+  const scrollRef = useRef<ScrollView>(null)
 
   useEffect(() => {
     const lastIndex = chatMessageState?.length - 1
@@ -59,6 +59,7 @@ export const ChatScreen: React.FC = () => {
   }, [chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
 
   const handleSubmit = () => {
+    if (submitDisabled) return
     Keyboard.dismiss()
     setLoading(true)
     setChatMessageState(current => [...current, { role: 'user', content: chatQuery }])
@@ -100,6 +101,7 @@ export const ChatScreen: React.FC = () => {
               cursorColor={colors.backgroundPrimary}
               value={chatQuery}
               onFocus={handleScrollToEnd}
+              onSubmitEditing={handleSubmit}
             />
             <TouchableOpacity disabled={submitDisabled} className="rounded-full" onPress={handleSubmit}>
               <FontAwesomeIcon icon={faCircleArrowRight} color={colors.backgroundPrimary} size={50} />
