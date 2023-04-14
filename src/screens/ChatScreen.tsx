@@ -14,7 +14,11 @@ import { chatQueryAtom } from '~atoms/chatQueryAtom'
 import { ErrorBoundary } from '~components/error/ErrorBoundary'
 import { ChatMessage } from '~components/ui/ChatMessage'
 import { Column } from '~components/ui/Column'
+import { NavigationBar } from '~components/ui/NavigationBar'
 import { Row } from '~components/ui/Row'
+import type { ScrollViewRefType } from '~components/ui/ScrollView'
+import { ScrollView } from '~components/ui/ScrollView'
+import { View } from '~components/ui/View'
 import colors from '~styles/colors.cjs'
 
 const axiosClient = axios.create({
@@ -104,6 +108,9 @@ export const ChatScreen: React.FC = () => {
             </TouchableOpacity>
           </Row>
         </Row>
+        <View className="mb-2">
+          <NavigationBar />
+        </View>
       </KeyboardAvoidingView>
     </ErrorBoundary>
   )

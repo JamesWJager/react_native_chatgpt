@@ -5,6 +5,7 @@ import type { HomeStackParamList } from '~@types/NavigationTypes'
 
 import { ErrorBoundary } from '~components/error/ErrorBoundary'
 import { ChatScreen } from '~screens/ChatScreen'
+import { HomeScreen } from '~screens/HomeScreen'
 import { DEFAULT_STACK_OPTIONS } from '~utils/constants'
 
 const Stack = createNativeStackNavigator<HomeStackParamList>()
