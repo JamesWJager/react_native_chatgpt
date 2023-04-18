@@ -15,7 +15,7 @@ export const chatGPTOpenAPIKeyAtom = atom<string | undefined>({
       onSet((newKey, currentKey) => {
         if (!currentKey && !newKey && trigger === 'get') return
 
-        if (!newKey) {
+        if (!newKey || newKey === '') {
           OpenAPIKeyAPI.deleteOpenAPIKey().catch((error: string) => {
             throw new Error(`Error deleting AsyncStorage Item @OpenAPIKey: ${error}`)
           })

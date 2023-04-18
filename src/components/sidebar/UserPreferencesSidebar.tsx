@@ -17,6 +17,7 @@ export const UserPreferencesSidebar: React.FC = () => {
 
   const handleOpenUserOpenAPIKeyModal = () => {
     setUserPreferencesOpenAPIModalOpen(true)
+    setUserPreferencesOpen(false)
   }
 
   const handleExit = () => {

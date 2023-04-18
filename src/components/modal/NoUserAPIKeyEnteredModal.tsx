@@ -22,7 +22,7 @@ export const NoUserAPIKeyEnteredModal: React.FC = () => {
   }
 
   return (
-    <CustomModal showModal={noUserAPIKeyEnteredModalOpen} defaultPadding hideBG>
+    <CustomModal showModal={noUserAPIKeyEnteredModalOpen} defaultPadding hideBG onPressOut={handleExit}>
       <Column className="bg-backgroundPrimary rounded-md p-4">
         <Row className="justify-between">
           <Text text="Error" className="text-white text-[20px] pb-2" />

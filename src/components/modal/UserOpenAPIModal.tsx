@@ -37,7 +37,7 @@ export const UserOpenAPIModal: React.FC = () => {
   return (
     <KeyboardAvoidingView>
       <ErrorBoundary>
-        <CustomModal showModal={userPreferencesOpenAPIModalOpen} defaultPadding hideBG>
+        <CustomModal showModal={userPreferencesOpenAPIModalOpen} defaultPadding hideBG onPressOut={handleExit}>
           <Column className="bg-backgroundPrimary rounded-md p-4">
             <Row className="justify-between">
               <Text text="Enter Your OpenAPI key" className="text-white text-[20px] pb-2" />
