@@ -57,7 +57,7 @@ export const ChatScreen: React.FC = () => {
           setChatQuery('')
         })
     }
-  }, [chatGPTOpenAPIKey, chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
+  }, [chatGPTOpenAPIKey, chatMessageState, chatQuery.length, lastIndex, setChatMessageState, setChatQuery])
 
   const handleSubmit = () => {
     if (submitDisabled) return
