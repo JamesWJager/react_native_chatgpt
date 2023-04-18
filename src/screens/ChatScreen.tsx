@@ -49,7 +49,9 @@ export const ChatScreen: React.FC = () => {
           throw new Error(
             `Error posting message to chatGPT using model: gpt-3.5-turbo ------ message state: ${JSON.stringify(
               chatMessageState,
-            )} ------ Error: ${error} ------ Please Check that your OpenAPI Key has been entered correctly: ${chatGPTOpenAPIKey}`,
+            )} ------ Error: ${error} ------ Please Check that your OpenAPI Key has been entered correctly: ${
+              chatGPTOpenAPIKey ?? 'There is no key'
+            }`,
           )
         })
         .finally(() => {
