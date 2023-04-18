@@ -7,12 +7,14 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import { Row } from './Row'
 
+import { chatGPTCategorySelector } from '~atoms/chatGPTCategoryAtom'
 import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
 import { noUserAPIKeyEnteredModalOpenAtom } from '~atoms/noUserAPIKeyEnteredModalOpenAtom'
 
 export const NavigationBar: React.FC = () => {
   const { navigate } = useNavigation()
   const [openAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
+  const setChatGPTCategory = useSetRecoilState(chatGPTCategorySelector)
   const setNoUserAPIKeyEnteredModalOpen = useSetRecoilState(noUserAPIKeyEnteredModalOpenAtom)
   const navigateHome = () => {
     navigate('HomeStack', { screen: 'HomeScreen' })
@@ -23,6 +25,7 @@ export const NavigationBar: React.FC = () => {
       setNoUserAPIKeyEnteredModalOpen(true)
       return
     }
+    setChatGPTCategory(undefined)
     navigate('HomeStack', { screen: 'ChatScreen' })
   }
   return (

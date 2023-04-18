@@ -10,7 +10,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { Column } from './Column'
 import { Row } from './Row'
 
-import { chatGPTCategoryAtom } from '~atoms/chatGPTCategoryAtom'
+import { chatGPTCategorySelector } from '~atoms/chatGPTCategoryAtom'
 import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
 import { noUserAPIKeyEnteredModalOpenAtom } from '~atoms/noUserAPIKeyEnteredModalOpenAtom'
 
@@ -24,7 +24,7 @@ export const Icon: React.FC<IconInterface> = props => {
   const { name, icon, color } = props
   const [openAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
   const setNoUserAPIKeyEnteredModalOpen = useSetRecoilState(noUserAPIKeyEnteredModalOpenAtom)
-  const setChatGPTCategory = useSetRecoilState(chatGPTCategoryAtom)
+  const setChatGPTCategory = useSetRecoilState(chatGPTCategorySelector)
   const { navigate } = useNavigation()
 
   const handleNavigation = (category: string) => {

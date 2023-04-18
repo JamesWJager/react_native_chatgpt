@@ -64,8 +64,9 @@ export const ChatScreen: React.FC = () => {
   const handleSubmit = () => {
     if (submitDisabled) return
     Keyboard.dismiss()
+    const query = chatGPTCategory ? `${chatGPTCategory}: ${chatQuery}` : chatQuery
     setLoading(true)
-    setChatMessageState(current => [...current, { role: 'user', content: chatQuery }])
+    setChatMessageState(current => [...current, { role: 'user', content: query }])
     setChatQuery('')
   }
 
