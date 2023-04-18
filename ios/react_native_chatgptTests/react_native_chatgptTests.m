@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface react_natve_chatgptTests : XCTestCase
+@interface react_native_chatgptTests : XCTestCase
 
 @end
 
-@implementation react_natve_chatgptTests
+@implementation react_native_chatgptTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

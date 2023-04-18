@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "react_natve_chatgpt.app"
-               BlueprintName = "react_natve_chatgpt"
-               ReferencedContainer = "container:react_natve_chatgpt.xcodeproj">
+               BuildableName = "react_native_chatgpt.app"
+               BlueprintName = "react_native_chatgpt"
+               ReferencedContainer = "container:react_native_chatgpt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "react_natve_chatgptTests.xctest"
-               BlueprintName = "react_natve_chatgptTests"
-               ReferencedContainer = "container:react_natve_chatgpt.xcodeproj">
+               BuildableName = "react_native_chatgptTests.xctest"
+               BlueprintName = "react_native_chatgptTests"
+               ReferencedContainer = "container:react_native_chatgpt.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "react_natve_chatgpt.app"
-            BlueprintName = "react_natve_chatgpt"
-            ReferencedContainer = "container:react_natve_chatgpt.xcodeproj">
+            BuildableName = "react_native_chatgpt.app"
+            BlueprintName = "react_native_chatgpt"
+            ReferencedContainer = "container:react_native_chatgpt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "react_natve_chatgpt.app"
-            BlueprintName = "react_natve_chatgpt"
-            ReferencedContainer = "container:react_natve_chatgpt.xcodeproj">
+            BuildableName = "react_native_chatgpt.app"
+            BlueprintName = "react_native_chatgpt"
+            ReferencedContainer = "container:react_native_chatgpt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

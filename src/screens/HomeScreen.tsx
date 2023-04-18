@@ -1,3 +1,4 @@
+// <script src="http://192.168.0.254:8097"></script>
 import { Suspense } from 'react'
 import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
