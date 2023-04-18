@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native'
-import { CHATGPT_API, OPENAI_API_KEY } from 'react-native-dotenv'
+import { CHATGPT_API } from 'react-native-dotenv'
 
 import type { ChatGPTInterface } from '~@types/ChatGPTInterface'
 
@@ -9,29 +9,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
 
+import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
 import { chatMessageStateAtom } from '~atoms/chatMessagesAtom'
 import { chatQueryAtom } from '~atoms/chatQueryAtom'
 import { ErrorBoundary } from '~components/error/ErrorBoundary'
 import { ChatMessage } from '~components/ui/ChatMessage'
 import { Column } from '~components/ui/Column'
-import { NavigationBar } from '~components/ui/NavigationBar'
 import { Row } from '~components/ui/Row'
-import { View } from '~components/ui/View'
 import colors from '~styles/colors.cjs'
-
-const axiosClient = axios.create({
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + OPENAI_API_KEY,
-  },
-})
 
 export const ChatScreen: React.FC = () => {
   const [chatQuery, setChatQuery] = useRecoilState(chatQueryAtom)
   const [chatMessageState, setChatMessageState] = useRecoilState(chatMessageStateAtom)
+  const [chatGPTOpenAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
   const submitDisabled = chatQuery.length === 0
   const [loading, setLoading] = useState(true)
   const scrollRef = useRef<ScrollView>(null)
+
+  const axiosClient = axios.create({
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + chatGPTOpenAPIKey,
+    },
+  })
 
   useEffect(() => {
     const lastIndex = chatMessageState?.length - 1
@@ -46,7 +46,7 @@ export const ChatScreen: React.FC = () => {
           throw new Error(
             `Error posting message to chatGPT using model: gpt-3.5-turbo ------ message state: ${JSON.stringify(
               chatMessageState,
-            )} ------ Error: ${error}`,
+            )} ------ Error: ${error} ------ Please Check that your OpenAPI Key has been entered correctly: ${chatGPTOpenAPIKey}`,
           )
         })
         .finally(() => {
@@ -54,7 +54,7 @@ export const ChatScreen: React.FC = () => {
           setChatQuery('')
         })
     }
-  }, [chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
+  }, [axiosClient, chatGPTOpenAPIKey, chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
 
   const handleSubmit = () => {
     if (submitDisabled) return
@@ -106,9 +106,6 @@ export const ChatScreen: React.FC = () => {
             </TouchableOpacity>
           </Row>
         </Row>
-        <View className="mb-2">
-          <NavigationBar />
-        </View>
       </KeyboardAvoidingView>
     </ErrorBoundary>
   )

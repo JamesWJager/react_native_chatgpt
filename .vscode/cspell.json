@@ -20,6 +20,7 @@
     "tanstack",
     "Timespans",
     "tsmerge",
+    "Xmark",
     "Xmlhttp"
   ],
   // flagWords - list of words to be always considered incorrect

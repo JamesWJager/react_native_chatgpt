@@ -5,6 +5,10 @@ import { useNavigation } from '@react-navigation/native'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import clsx from 'clsx'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+
+import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
+import { noUserAPIKeyEnteredModalOpenAtom } from '~atoms/noUserAPIKeyEnteredModalOpenAtom'
 
 interface IconInterface extends ViewProps {
   name: string
@@ -14,9 +18,15 @@ interface IconInterface extends ViewProps {
 
 export const Icon: React.FC<IconInterface> = props => {
   const { name, icon, color } = props
+  const [openAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
+  const setNoUserAPIKeyEnteredModalOpen = useSetRecoilState(noUserAPIKeyEnteredModalOpenAtom)
   const { navigate } = useNavigation()
 
   const handleNavigation = () => {
+    if (!openAPIKey) {
+      setNoUserAPIKeyEnteredModalOpen(true)
+      return
+    }
     navigate('HomeStack', { screen: 'ChatScreen' })
   }
   return (
