@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import clsx from 'clsx'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
+import { chatGPTCategoryAtom } from '~atoms/chatGPTCategoryAtom'
 import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
 import { noUserAPIKeyEnteredModalOpenAtom } from '~atoms/noUserAPIKeyEnteredModalOpenAtom'
 
@@ -20,20 +21,22 @@ export const Icon: React.FC<IconInterface> = props => {
   const { name, icon, color } = props
   const [openAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
   const setNoUserAPIKeyEnteredModalOpen = useSetRecoilState(noUserAPIKeyEnteredModalOpenAtom)
+  const setChatGPTCategory = useSetRecoilState(chatGPTCategoryAtom)
   const { navigate } = useNavigation()
 
-  const handleNavigation = () => {
+  const handleNavigation = (category: string) => {
     if (!openAPIKey) {
       setNoUserAPIKeyEnteredModalOpen(true)
       return
     }
+    setChatGPTCategory(category)
     navigate('HomeStack', { screen: 'ChatScreen' })
   }
   return (
     <TouchableHighlight
       className="flex items-center justify-center flex-[25%]"
       style={styles.gap}
-      onPress={handleNavigation}>
+      onPress={() => handleNavigation(name)}>
       <>
         <View className={clsx('h-11 w-11 flex items-center justify-center rounded-xl', color)}>
           <FontAwesomeIcon icon={icon} color="white" size={20} />

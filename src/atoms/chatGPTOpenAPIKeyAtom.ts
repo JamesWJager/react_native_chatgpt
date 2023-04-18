@@ -13,12 +13,18 @@ export const chatGPTOpenAPIKeyAtom = atom<string | undefined>({
       setSelf(cachedOpenAPIKeyAPI.getOpenAPIKey())
 
       onSet((newKey, currentKey) => {
-        if (!currentKey && trigger === 'get') return
+        if (!currentKey && !newKey && trigger === 'get') return
 
         if (!newKey) {
-          OpenAPIKeyAPI.deleteOpenAPIKey()
+          OpenAPIKeyAPI.deleteOpenAPIKey().catch((error: string) => {
+            throw new Error(`Error deleting AsyncStorage Item @OpenAPIKey: ${error}`)
+          })
         } else {
-          OpenAPIKeyAPI.createOrUpdateKey(newKey)
+          OpenAPIKeyAPI.createOrUpdateKey(newKey).catch((error: string) => {
+            throw new Error(
+              `Error creating or updating AsyncStorage Item @OpenAPIKey: ${error} ----- check OpenAPI Key: ${newKey}`,
+            )
+          })
         }
       })
     },

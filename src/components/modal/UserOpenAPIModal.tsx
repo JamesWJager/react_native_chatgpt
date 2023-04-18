@@ -1,3 +1,4 @@
+import type { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 import { KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
 
 import { faCheckCircle, faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
@@ -28,6 +29,11 @@ export const UserOpenAPIModal: React.FC = () => {
     setUserPreferencesOpenAPIModalOpen(false)
   }
 
+  const handleOpenAPIKeyChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    const value = event.nativeEvent.text
+    setOpenAPIKey(value)
+  }
+
   return (
     <KeyboardAvoidingView>
       <ErrorBoundary>
@@ -46,7 +52,7 @@ export const UserOpenAPIModal: React.FC = () => {
                   className="self-center flex-1 py-0 text-black rounded-full text-[16px] px-2"
                   placeholder="Enter Open API Key"
                   placeholderTextColor="#000"
-                  onChangeText={setOpenAPIKey}
+                  onChange={handleOpenAPIKeyChange}
                   cursorColor={colors.backgroundPrimary}
                   value={openAPIKey}
                   onSubmitEditing={handleSubmit}

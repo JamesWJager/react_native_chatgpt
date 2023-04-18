@@ -6,7 +6,7 @@ export default class OpenAPIKeyAPI {
     const openAPIKey = await AsyncStorage.getItem('@OpenAPIKey').catch((error: string) => {
       throw new Error(`Error getting AsyncStorage Item @OpenAPIKey: ${error}`)
     })
-    return openAPIKey ? JSON.parse(openAPIKey) : undefined
+    return !openAPIKey ? undefined : (JSON.parse(openAPIKey) as string)
   }
 
   static async getOpenAPIKey(): Promise<string | undefined> {

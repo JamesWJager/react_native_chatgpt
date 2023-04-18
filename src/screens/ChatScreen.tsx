@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import { CHATGPT_API } from 'react-native-dotenv'
 
 import type { ChatGPTInterface } from '~@types/ChatGPTInterface'
@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
 
+import { chatGPTCategoryAtom } from '~atoms/chatGPTCategoryAtom'
 import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
 import { chatMessageStateAtom } from '~atoms/chatMessagesAtom'
 import { chatQueryAtom } from '~atoms/chatQueryAtom'
@@ -16,22 +17,24 @@ import { ErrorBoundary } from '~components/error/ErrorBoundary'
 import { ChatMessage } from '~components/ui/ChatMessage'
 import { Column } from '~components/ui/Column'
 import { Row } from '~components/ui/Row'
+import { Text } from '~components/ui/Text'
 import colors from '~styles/colors.cjs'
+
+const axiosClient = axios.create({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
 
 export const ChatScreen: React.FC = () => {
   const [chatQuery, setChatQuery] = useRecoilState(chatQueryAtom)
   const [chatMessageState, setChatMessageState] = useRecoilState(chatMessageStateAtom)
   const [chatGPTOpenAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
+  const [chatGPTCategory] = useRecoilState(chatGPTCategoryAtom)
   const submitDisabled = chatQuery.length === 0
   const [loading, setLoading] = useState(true)
   const scrollRef = useRef<ScrollView>(null)
-
-  const axiosClient = axios.create({
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + chatGPTOpenAPIKey,
-    },
-  })
+  axiosClient.defaults.headers.common.Authorization = !chatGPTOpenAPIKey ? null : 'Bearer ' + chatGPTOpenAPIKey
 
   useEffect(() => {
     const lastIndex = chatMessageState?.length - 1
@@ -54,7 +57,7 @@ export const ChatScreen: React.FC = () => {
           setChatQuery('')
         })
     }
-  }, [axiosClient, chatGPTOpenAPIKey, chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
+  }, [chatGPTOpenAPIKey, chatMessageState, chatQuery.length, setChatMessageState, setChatQuery])
 
   const handleSubmit = () => {
     if (submitDisabled) return
@@ -78,6 +81,11 @@ export const ChatScreen: React.FC = () => {
           // eslint-disable-next-line react-native/no-inline-styles
           contentContainerStyle={{ flexGrow: 1 }}>
           <Column className="flex-1 gap-2 pt-[20] px-4" full>
+            {chatGPTCategory && (
+              <Row>
+                <Text className="text-chatInput" text={`Selected Category: ${chatGPTCategory}`} />
+              </Row>
+            )}
             {chatMessageState.map((message, index) => {
               if (index === 0) return null
               return <ChatMessage key={index} message={message} />
@@ -85,7 +93,7 @@ export const ChatScreen: React.FC = () => {
           </Column>
           {loading && (
             <Row className="py-2" center>
-              <Text className="text-[#43C2DD] text-[18px]">...Generating Response</Text>
+              <Text className="text-[#43C2DD] text-[18px]" text="...Generating Response" />
             </Row>
           )}
         </ScrollView>
