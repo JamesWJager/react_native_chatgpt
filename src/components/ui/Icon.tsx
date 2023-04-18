@@ -1,11 +1,14 @@
 import type { ViewProps } from 'react-native'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import clsx from 'clsx'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+
+import { Column } from './Column'
+import { Row } from './Row'
 
 import { chatGPTCategoryAtom } from '~atoms/chatGPTCategoryAtom'
 import { chatGPTOpenAPIKeyAtom } from '~atoms/chatGPTOpenAPIKeyAtom'
@@ -33,21 +36,13 @@ export const Icon: React.FC<IconInterface> = props => {
     navigate('HomeStack', { screen: 'ChatScreen' })
   }
   return (
-    <TouchableHighlight
-      className="flex items-center justify-center flex-[25%]"
-      style={styles.gap}
-      onPress={() => handleNavigation(name)}>
-      <>
-        <View className={clsx('h-11 w-11 flex items-center justify-center rounded-xl', color)}>
-          <FontAwesomeIcon icon={icon} color="white" size={20} />
-        </View>
-        <Text className="text-white">{name}</Text>
-      </>
-    </TouchableHighlight>
+    <TouchableOpacity className="flex items-center justify-center" onPress={() => handleNavigation(name)}>
+      <Column className="h-[30vw] w-[30vw] items-center justify-center rounded-xl bg-backgroundPrimary">
+        <Row className={clsx('h-11 w-11 flex items-center justify-center rounded-md', color)}>
+          <FontAwesomeIcon icon={icon} color="white" size={25} />
+        </Row>
+        <Text className="text-white text-center pt-2">{name}</Text>
+      </Column>
+    </TouchableOpacity>
   )
 }
-const styles = StyleSheet.create({
-  gap: {
-    gap: 5,
-  },
-})

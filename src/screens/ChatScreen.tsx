@@ -32,12 +32,12 @@ export const ChatScreen: React.FC = () => {
   const [chatGPTOpenAPIKey] = useRecoilState(chatGPTOpenAPIKeyAtom)
   const [chatGPTCategory] = useRecoilState(chatGPTCategoryAtom)
   const submitDisabled = chatQuery.length === 0
-  const [loading, setLoading] = useState(true)
+  const lastIndex = chatMessageState?.length - 1
+  const [loading, setLoading] = useState(chatMessageState[lastIndex]?.role === 'user')
   const scrollRef = useRef<ScrollView>(null)
   axiosClient.defaults.headers.common.Authorization = !chatGPTOpenAPIKey ? null : 'Bearer ' + chatGPTOpenAPIKey
 
   useEffect(() => {
-    const lastIndex = chatMessageState?.length - 1
     if (chatMessageState[lastIndex]?.role === 'user') {
       axiosClient
         .post<ChatGPTInterface>(CHATGPT_API, {
