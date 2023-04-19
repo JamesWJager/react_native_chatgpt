@@ -29,7 +29,7 @@ export const NavigationBar: React.FC = () => {
     navigate('HomeStack', { screen: 'ChatScreen' })
   }
   return (
-    <Row className="justify-evenly py-1">
+    <Row className="justify-evenly py-2">
       <TouchableHighlight className="justify-center items-center" onPress={navigateHome} style={styles.gap}>
         <>
           <FontAwesomeIcon icon={faHome} color="white" size={20} />

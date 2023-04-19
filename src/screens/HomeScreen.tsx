@@ -1,6 +1,7 @@
 // <script src="http://192.168.0.254:8097"></script>
 import { Suspense } from 'react'
-import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { ImageBackground, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import Animated, { SlideInDown } from 'react-native-reanimated'
 
 import {
   faBars,
@@ -19,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { useRecoilState } from 'recoil'
 
 import { userPreferencesOpenAtom } from '~atoms/userPreferencesOpenAtom'
+import { ErrorBoundary } from '~components/error/ErrorBoundary'
 import { NoUserAPIKeyEnteredModal } from '~components/modal/NoUserAPIKeyEnteredModal'
 import { UserOpenAPIModal } from '~components/modal/UserOpenAPIModal'
 import { UserPreferencesSidebar } from '~components/sidebar/UserPreferencesSidebar'
@@ -73,15 +75,17 @@ export const HomeScreen: React.FC = () => {
           <Text className="text-white">Header</Text>
         </ImageBackground>
       </Row>
-      <ScrollView>
-        <Row full className="justify-center items-start flex-wrap flex-1 pt-3" style={styles.gap}>
-          <Suspense>
-            {icons.map((icon, index) => (
-              <Icon key={index} name={icon.name} icon={icon.icon} color={icon.color} />
-            ))}
-          </Suspense>
-        </Row>
-      </ScrollView>
+      <ErrorBoundary>
+        <Animated.ScrollView entering={SlideInDown}>
+          <Row full className="justify-center items-start flex-wrap flex-1 pt-3" style={styles.gap}>
+            <Suspense>
+              {icons.map((icon, index) => (
+                <Icon key={index} name={icon.name} icon={icon.icon} color={icon.color} />
+              ))}
+            </Suspense>
+          </Row>
+        </Animated.ScrollView>
+      </ErrorBoundary>
       <Suspense>
         <NavigationBar />
       </Suspense>

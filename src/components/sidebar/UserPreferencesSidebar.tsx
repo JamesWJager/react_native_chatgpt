@@ -1,4 +1,5 @@
 import { Modal, TouchableOpacity } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -14,6 +15,7 @@ import colors from '~styles/colors.cjs'
 export const UserPreferencesSidebar: React.FC = () => {
   const [userPreferencesOpen, setUserPreferencesOpen] = useRecoilState(userPreferencesOpenAtom)
   const setUserPreferencesOpenAPIModalOpen = useSetRecoilState(userPreferencesOpenAPIModalOpenAtom)
+  const insets = useSafeAreaInsets()
 
   const handleOpenUserOpenAPIKeyModal = () => {
     setUserPreferencesOpenAPIModalOpen(true)
@@ -25,10 +27,10 @@ export const UserPreferencesSidebar: React.FC = () => {
   }
 
   return (
-    <Modal animationType="fade" transparent={true} visible={userPreferencesOpen}>
-      <Column className="absolute top-0 left-0 bg-backgroundPrimary rounded-md p-4">
+    <Modal animationType="none" transparent={true} visible={userPreferencesOpen}>
+      <Column className="bg-black rounded-md p-4" style={{ marginTop: insets?.top }}>
         <Row className="justify-between pb-2 items-center">
-          <Text text="Welcome" className="text-white" />
+          <Text text="User Settings" className="text-white" />
           <TouchableOpacity className="rounded-full" onPress={handleExit}>
             <FontAwesomeIcon icon={faXmarkCircle} color={colors.chatInput} size={20} />
           </TouchableOpacity>

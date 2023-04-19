@@ -8,8 +8,12 @@
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
     "lint:fix": "eslint src/**/*.ts{,x} --fix",
     "start": "NODE_ENV=development react-native start",
-    "dev": "react-devtools",
-    "test": "jest"
+    "dev:flipper": "npx flipper-server",
+    "dev:react": "react-devtools",
+    "test": "jest",
+    "clean-install": "cd ios && pod deintegrate react_native_chatgpt.xcodeproj && pod cache clean --all && cd .. && rm -rf node_modules && yarn install && npx pod-install && cd android && ./gradlew clean && cd ..",
+    "pod-update": "cd ios && npx pod-install --repo-update && cd ..",
+    "android-clean": "cd android && ./gradlew clean && cd .."
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -28,14 +32,17 @@
     "clsx": "^1.2.1",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
-    "react-native": "0.71.6",
+    "react-native": "0.71.7",
     "react-native-dotenv": "^3.4.8",
     "react-native-error-boundary": "^1.2.3",
+    "react-native-flipper": "^0.189.0",
+    "react-native-reanimated": "^3.0.2",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",
     "react-native-svg": "^13.9.0",
     "react-native-uuid": "^2.0.1",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "rn-flipper-async-storage-advanced": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

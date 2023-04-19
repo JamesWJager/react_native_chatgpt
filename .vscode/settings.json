@@ -23,5 +23,5 @@
     "android/app/src/main/assets/index.android.bundle": true
   },
   "tailwindCSS.classAttributes": ["className", "textStyles", "viewStyles", "color"],
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
