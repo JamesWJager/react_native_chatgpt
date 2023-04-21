@@ -17,6 +17,7 @@ export default function FlipperAsyncStorage() {
     } catch (e) {
       console.error(e)
     }
+    throw new Error("this shouldn't happen")
   }
 
   useEffect(() => {
